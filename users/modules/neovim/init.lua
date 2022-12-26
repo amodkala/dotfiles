@@ -1,0 +1,2 @@
+require("user")
+print("configured")
