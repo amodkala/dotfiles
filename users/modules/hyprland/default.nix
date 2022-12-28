@@ -10,7 +10,5 @@
         recursive = true;
     };
 
-    programs.alacritty.enable = true;
-
     wayland.windowManager.hyprland.enable = true;
 }

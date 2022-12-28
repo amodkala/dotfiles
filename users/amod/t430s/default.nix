@@ -1,21 +1,9 @@
 { config, pkgs, ... }:
 {
     imports = [
+        ../../amod
         ../../modules/dwm
+        ../../modules/alacritty
         ../../modules/neovim
     ];
-
-    home = {
-        username = "amod";
-        homeDirectory = "/home/amod";
-        stateVersion = "22.11";
-    };
-
-    programs = with pkgs; {
-        git = {
-            enable = true;
-            userName = "amodkala";
-            userEmail = "amodkala@gmail.com";
-        };
-    };
 }

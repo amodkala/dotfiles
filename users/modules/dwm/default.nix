@@ -5,10 +5,6 @@ let
              dwm = super.dwm.overrideAttrs (oldAttrs: rec {
 
              });
-
-             st = super.st.overrideAttrs (oldAttrs: rec {
-
-             });
         })
     ];
 in {
@@ -19,6 +15,5 @@ in {
 
     home.packages = with pkgs; [
         dwm
-        st
     ];
 }
