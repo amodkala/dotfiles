@@ -1,21 +1,31 @@
-{ pkgs }:
+{ pkgs, lib, ... }:
 {
-    enable = true;
 
-    vimAlias = true;
-    viAlias = true;
+    xdg = {
+        configFile.nvim = {
+            source = ./config;
+            recursive = true;
+        };
+    };
 
-    plugins = with pkgs.vimPlugins; [
-        plenary-nvim
-        telescope-nvim	
-        nvim-treesitter.withAllGrammars
-    ];
+    programs.neovim = {
+        enable = true;
 
-    extraPackages = with pkgs; [
-        ripgrep
-    ];
+        vimAlias = true;
+        viAlias = true;
 
-    extraConfig = ''
-        :luafile ~/.config/nvim/lua/init.lua
-    '';
+        plugins = with pkgs.vimPlugins; [
+            plenary-nvim
+            telescope-nvim	
+            nvim-treesitter.withAllGrammars
+        ];
+
+        extraPackages = with pkgs; [
+            ripgrep
+        ];
+
+        extraConfig = ''
+            :luafile ~/.config/nvim/lua/init.lua
+        '';
+    };
 }

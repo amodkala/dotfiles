@@ -3,13 +3,14 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-    outputs = { self, nixpkgs, home-manager }:
+    outputs = { self, nixpkgs, nixos-hardware, home-manager }:
     let
         system = "x84_64-linux";
     in {
@@ -18,6 +19,7 @@
                 inherit system;
                 modules = [
                     ./hosts/t430s
+                    nixos-hardware.nixosModules.lenovo-thinkpad-t430
                     home-manager.nixosModules.home-manager
                     {
                         home-manager = {

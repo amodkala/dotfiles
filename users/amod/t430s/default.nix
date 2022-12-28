@@ -1,26 +1,21 @@
 { config, pkgs, ... }:
 {
-  home = {
-    username = "amod";
-    homeDirectory = "/home/amod";
-    stateVersion = "22.11";
-  };
+    imports = [
+        ../../modules/dwm
+        ../../modules/neovim
+    ];
 
-  xdg = {
-    configFile.nvim = {
-      source = ../../modules/neovim;
-      recursive = true;
+    home = {
+        username = "amod";
+        homeDirectory = "/home/amod";
+        stateVersion = "22.11";
     };
-  };
 
-  programs = with pkgs; {
-
-    neovim = import ../../modules/neovim { inherit pkgs; };
-
-    git = {
-      enable = true;
-      userName = "amodkala";
-      userEmail = "amodkala@gmail.com";
+    programs = with pkgs; {
+        git = {
+            enable = true;
+            userName = "amodkala";
+            userEmail = "amodkala@gmail.com";
+        };
     };
-  };
 }
