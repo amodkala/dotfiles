@@ -30,6 +30,23 @@
                     }
                 ];
             };
+
+            t480 = nixpkgs.lib.nixosSystem {
+                inherit system;
+                modules = [
+                    ./hosts/t480
+                    nixos-hardware.nixosModules.lenovo-thinkpad-t480
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager = {
+                            useGlobalPkgs = true;
+                            useUserPackages = true;
+                            users.amod = import ./users/amod/t480;
+                        };
+                    }
+                ];
+            };
+
         };
     };
 }
