@@ -43,6 +43,14 @@
         enable = true;
         layout = "us";
         xkbVariant = "";
+        libinput = {
+            enable = true;
+            touchpad = {
+                tapping = true;
+                naturalScrolling = true;
+                scrollMethod = "twofinger";
+            };
+        };
         windowManager.dwm.enable = true;
         displayManager.startx.enable = true;
     };
