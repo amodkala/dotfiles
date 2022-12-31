@@ -21,13 +21,7 @@
                     ./hosts/t430s
                     nixos-hardware.nixosModules.lenovo-thinkpad-t430
                     home-manager.nixosModules.home-manager
-                    {
-                        home-manager = {
-                            useGlobalPkgs = true;
-                            useUserPackages = true;
-                            users.amod = import ./users/amod/t430s;
-                        };
-                    }
+                    { home-manager.users.amod = import ./users/amod/t430s; }
                 ];
             };
 

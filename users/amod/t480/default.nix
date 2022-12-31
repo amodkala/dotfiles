@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-
     imports = [
         ../../amod
         ../../modules/dwm
