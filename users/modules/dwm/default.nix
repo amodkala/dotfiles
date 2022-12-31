@@ -15,5 +15,7 @@ in {
 
     home.packages = with pkgs; [
         dwm
+        st
+        dmenu
     ];
 }

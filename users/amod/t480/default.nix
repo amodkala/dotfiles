@@ -3,7 +3,7 @@
 
     imports = [
         ../../amod
-        ../../modules/hyprland
+        ../../modules/dwm
         ../../modules/alacritty
         ../../modules/neovim
     ];
