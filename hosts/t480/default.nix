@@ -60,8 +60,10 @@
         extraConfig = ''
             [UNDERVOLT]
             CORE: -125
-                '';
+        '';
     };
+
+    programs.light.enable = true;
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.amod = {
@@ -78,8 +80,7 @@
 # $ nix search wget
     environment.systemPackages = with pkgs; [
         neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-            wget
-            light
+        wget
     ];
 
 # Some programs need SUID wrappers, can be configured further or are

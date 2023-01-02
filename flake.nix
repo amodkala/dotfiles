@@ -8,9 +8,10 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        hyprland.url = "github:HyprWM/Hyprland";
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, home-manager }:
+    outputs = { self, nixpkgs, nixos-hardware, home-manager, hyprland }:
     let
         system = "x84_64-linux";
     in {
@@ -31,6 +32,8 @@
                     ./hosts/t480
                     home-manager.nixosModules.home-manager
                     { home-manager.users.amod = import ./users/amod/t480; }
+                    hyprland.nixosModules.default
+                    { programs.hyprland.enable = true; }
                 ];
             };
 
