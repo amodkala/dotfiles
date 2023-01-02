@@ -54,9 +54,10 @@
     users.users.amod = {
         isNormalUser = true;
         description = "amod";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [];
+        extraGroups = [ "networkmanager" "wheel" "video" ];
     };
+
+    programs.light.enable = true;
 
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -65,7 +66,7 @@
 # $ nix search wget
     environment.systemPackages = with pkgs; [
         neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-            wget
+        wget
     ];
 
 # Some programs need SUID wrappers, can be configured further or are

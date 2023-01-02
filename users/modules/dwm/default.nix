@@ -2,14 +2,16 @@
 let
     nixpkgs.overlays = [
         (self: super: {
-             dwm = super.dwm.overrideAttrs (oldAttrs: rec {
+            dwm = super.dwm.overrideAttrs (oldAttrs: rec {
 
-             });
+            });
         })
     ];
-in {
 
+    wallpaper = ./config/Vermeer-view-of-delft.jpg;
+in {
     home.file.".xinitrc".text = ''
+        feh --no-fehbg --bg-fill ${wallpaper}
         exec dwm
     '';
 
@@ -18,4 +20,6 @@ in {
         st
         dmenu
     ];
+
+    programs.feh.enable = true;
 }
