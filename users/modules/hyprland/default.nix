@@ -1,4 +1,4 @@
-{ config, pkg, lib, ...}:
+{ config, pkgs, lib, ...}:
 let
     flake-compat = builtins.fetchTarball {
         url = "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
@@ -16,6 +16,10 @@ in {
     imports = [
         hyprland.homeManagerModules.default
     ]; 
+
+    home.packages = with pkgs; [
+        wl-clipboard
+    ];
 
     xdg.configFile."hypr" = {
         source = ./config;

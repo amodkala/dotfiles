@@ -1,0 +1,4 @@
+(defwindow bar
+    :geometry (geometry :anchor "top center")
+    :stacking "fg"
+)
