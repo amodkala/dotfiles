@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+    home.file.".xinitrc".text = ''
+        sxhkd &
+        exec bspwm
+    '';
 
     services.sxhkd = {
         enable = true;

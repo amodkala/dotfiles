@@ -51,7 +51,6 @@
                 scrollMethod = "twofinger";
             };
         };
-        windowManager.bspwm.enable = true;
         windowManager.dwm.enable = true;
         displayManager.startx.enable = true;
     };
