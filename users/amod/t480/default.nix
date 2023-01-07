@@ -2,10 +2,10 @@
 {
     imports = [
         ../../amod
+        ../../modules/fonts
         ../../modules/bspwm
-        ../../modules/hyprland
         ../../modules/eww
-        ../../modules/firefox
+        ../../modules/rofi
         ../../modules/alacritty
         ../../modules/neovim
     ];
