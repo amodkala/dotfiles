@@ -2,6 +2,10 @@
 let
     wallpaper = ./Vermeer-view-of-delft.jpg;
 in {
+    home.packages = with pkgs; [
+        xclip
+    ];
+
     home.file.".xinitrc".text = ''
         feh --bg-fill ${wallpaper}
         picom &

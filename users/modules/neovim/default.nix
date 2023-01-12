@@ -1,5 +1,8 @@
 { pkgs, lib, ... }:
 {
+    imports = [
+        ./plugins.nix
+    ];
 
     xdg = {
         configFile.nvim = {
@@ -10,15 +13,10 @@
 
     programs.neovim = {
         enable = true;
+#        package = pkgs.neovim-nightly;
 
         vimAlias = true;
         viAlias = true;
-
-        plugins = with pkgs.vimPlugins; [
-            plenary-nvim
-            telescope-nvim	
-            nvim-treesitter.withAllGrammars
-        ];
 
         extraPackages = with pkgs; [
             ripgrep

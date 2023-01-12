@@ -4,9 +4,10 @@
         ../../amod
         ../../modules/fonts
         ../../modules/bspwm
+        ../../modules/fish
         ../../modules/eww
-        ../../modules/rofi
         ../../modules/alacritty
         ../../modules/neovim
+        ../../modules/zathura
     ];
 }
