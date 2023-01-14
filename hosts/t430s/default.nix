@@ -1,39 +1,27 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-    imports =
-        [ # Include the results of the hardware scan.
+    imports = [ 
         ./hardware-configuration.nix
-        ];
+    ];
 
 
     nix = {
         package = pkgs.nixFlakes;
         extraOptions = ''
             experimental-features = nix-command flakes
-            '';
+        '';
     };
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
-
-# Bootloader.
+    
+    # Bootloader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
     networking.hostName = "nixos"; # Define your hostname.
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-# Configure network proxy if necessary
-# networking.proxy.default = "http://user:password@proxy:port/";
-# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-# Enable networking
-        networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
 
 # Set your time zone.
     time.timeZone = "America/Toronto";
@@ -46,7 +34,10 @@
         enable = true;
         layout = "us";
         xkbVariant = "";
-        windowManager.dwm.enable = true;
+        libinput = {
+            enable = true;
+            touchpad.naturalScrolling = true;
+        };
         displayManager.startx.enable = true;
     };
 
@@ -65,7 +56,7 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
     environment.systemPackages = with pkgs; [
-        neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        neovim 
         wget
     ];
 
