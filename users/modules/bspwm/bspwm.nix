@@ -21,6 +21,6 @@ in {
 
     settings = {
         border_width = 2;
-        window_gap = 20;
+        window_gap = 10;
     };
 }

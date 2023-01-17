@@ -22,6 +22,10 @@ in {
         # resize window to the bottom + right
         "super + shift + {h,j,k,l}" = "bspc node -z {right -20 0, bottom 0 20, bottom 0 -20, right 20 0}";
 
+        # system utilities
+        "${mod} + Print" = "maim -Bu ~/Pictures/$(date +%s).png";
+        "XF86MonBrightness{Up,Down}" = "light -{A,U} 1";
+
         # application-specific keybinds
         "${mod} + Return" = "alacritty";
         "${mod} + b" = "firefox";

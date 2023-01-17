@@ -3,7 +3,8 @@ let
     wallpaper = ./Vermeer-view-of-delft.jpg;
 in {
     home.packages = with pkgs; [
-        xclip
+        xclip # clipboard
+        maim # screenshot
     ];
 
     home.file.".xinitrc".text = ''
@@ -13,7 +14,10 @@ in {
         exec bspwm
     '';
 
-    programs.feh.enable = true;
+    programs = {
+        feh.enable = true;
+        rofi.enable = true;
+    };
 
     services = {
         picom = import ./picom.nix;
