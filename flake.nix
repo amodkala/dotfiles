@@ -8,9 +8,13 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+	darwin = {
+	    url = "github:lnl7/nix-darwin/master";
+	    inputs.nixpkgs.follows = "nixpkgs";
+	};
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, home-manager }:
+    outputs = { self, nixpkgs, nixos-hardware, home-manager, darwin }:
     let
         system = "x84_64-linux";
     in {
@@ -33,7 +37,17 @@
                     { home-manager.users.amod = import ./users/amod/t480; }
                 ];
             };
-
         };
+
+	darwinConfigurations = {
+	    macbook-pro = darwin.lib.darwinSystem {
+		system = "x86_64-darwin";
+		modules = [
+		    ./hosts/macbook-pro
+                    # home-manager.darwinModules.home-manager
+                    # { home-manager.users.amod = import ./users/amod/macbook-pro; }
+		];
+	    };
+	};
     };
 }
