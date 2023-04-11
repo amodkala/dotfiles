@@ -1,8 +1,8 @@
 { pkgs, lib, ... }:
 {
     home = {
-        username = "amod";
-        homeDirectory = "/home/amod";
+        username = "amodkala";
+        homeDirectory = "/home/amodkala";
         stateVersion = "22.11";
     };
 

@@ -44,8 +44,12 @@
 		system = "x86_64-darwin";
 		modules = [
 		    ./hosts/macbook-pro
-                    # home-manager.darwinModules.home-manager
-                    # { home-manager.users.amod = import ./users/amod/macbook-pro; }
+                    home-manager.darwinModules.home-manager
+                    { 
+			home-manager.useGlobalPkgs = true;
+			home-manager.useUserPackages = true;
+		        home-manager.users.amodkala = import ./users/amod/macbook-pro;
+		    }
 		];
 	    };
 	};
