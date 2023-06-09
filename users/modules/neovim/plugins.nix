@@ -19,11 +19,17 @@ in {
         # custom
         nvim-r
 
-        # nixpkgs
+        # editor tools
         plenary-nvim
         telescope-nvim	
-        nvim-treesitter.withAllGrammars
         vimtex
+
+        # themes
         catppuccin-nvim
+
+        # language tools
+        nvim-treesitter.withAllGrammars
+        nvim-lspconfig
+        rust-tools-nvim
     ];
 }

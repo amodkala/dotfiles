@@ -8,10 +8,10 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-	darwin = {
-	    url = "github:lnl7/nix-darwin/master";
-	    inputs.nixpkgs.follows = "nixpkgs";
-	};
+        darwin = {
+            url = "github:lnl7/nix-darwin/master";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { self, nixpkgs, nixos-hardware, home-manager, darwin }:
@@ -39,19 +39,19 @@
             };
         };
 
-	darwinConfigurations = {
-	    macbook-pro = darwin.lib.darwinSystem {
-		system = "x86_64-darwin";
-		modules = [
-		    ./hosts/macbook-pro
+        darwinConfigurations = {
+            macbook-pro = darwin.lib.darwinSystem {
+                system = "x86_64-darwin";
+                modules = [
+                    ./hosts/macbook-pro
                     home-manager.darwinModules.home-manager
                     { 
-			home-manager.useGlobalPkgs = true;
-			home-manager.useUserPackages = true;
-		        home-manager.users.amodkala = import ./users/amod/macbook-pro;
-		    }
-		];
-	    };
-	};
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.amodkala = import ./users/amod/macbook-pro;
+                    }
+                ];
+            };
+        };
     };
 }

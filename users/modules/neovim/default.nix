@@ -4,6 +4,11 @@
         ./plugins.nix
     ];
 
+    home.packages = with pkgs; [
+        rust-analyzer
+        gopls
+    ];
+
     xdg = {
         configFile.nvim = {
             source = ./config;
