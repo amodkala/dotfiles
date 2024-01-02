@@ -10,3 +10,6 @@ require'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
+
+-- parse mdx files as markdown
+require("nvim-treesitter.parsers").filetype_to_parsername.mdx = "markdown"

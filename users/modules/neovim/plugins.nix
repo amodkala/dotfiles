@@ -23,6 +23,7 @@ in {
         plenary-nvim
         telescope-nvim	
         vimtex
+        luasnip
 
         # themes
         catppuccin-nvim
