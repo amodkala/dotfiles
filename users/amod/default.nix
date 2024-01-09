@@ -2,8 +2,8 @@
 {
     home = {
         username = "amodkala";
-        homeDirectory = "/home/amodkala";
-        stateVersion = "22.11";
+        homeDirectory = "/Users/amodkala";
+        stateVersion = "23.05";
     };
 
     programs = with pkgs; {
