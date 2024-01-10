@@ -1,2 +1,2 @@
 require("user")
-print("configured")
+print("loaded home-manager config")
