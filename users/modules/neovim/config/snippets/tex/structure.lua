@@ -18,11 +18,27 @@ return {
         }
       )
     ),
-    s({trig="toc", dscr="table of contents with pagebreak"},
+    s({trig="toc", dscr="front page with title and table of contents"},
         t({
+            "\\maketitle",
             "\\tableofcontents",
             "\\pagebreak",
         })
+    ),
+    s({trig="env", dscr="new environment"},
+      fmta(
+        [[
+          \begin{<>}[<>]
+              <>
+          \end{<>}
+        ]],
+        { 
+            i(1),
+            i(2),
+            i(0),
+            rep(1),
+        }
+      )
     ),
     s({trig="alist", dscr="list with alphabet character bullets"},
       fmta(
