@@ -2,7 +2,7 @@
 let
     tex = (pkgs.texlive.combine {
         inherit (pkgs.texlive) scheme-medium
-        tcolorbox enumitem environ;
+        tcolorbox enumitem environ fontawesome;
     });
 in
 {
