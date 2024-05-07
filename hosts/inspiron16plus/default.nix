@@ -64,6 +64,8 @@
     programs = {
         light.enable = true;
         fish.enable = true;
+
+        ssh.startAgent = true;
     };
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
