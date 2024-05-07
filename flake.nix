@@ -37,6 +37,15 @@
                     { home-manager.users.amod = import ./users/amod/t480; }
                 ];
             };
+
+	    inspiron16plus = nixpkgs.lib.nixosSystem {
+	    	inherit system;
+		modules = [
+		    ./hosts/inspiron16plus
+		    home-manager.nixosModules.home-manager
+		    { home-manager.users.amod = import ./users/amod/inspiron16plus; }
+		];
+	    };
         };
 
         darwinConfigurations = {

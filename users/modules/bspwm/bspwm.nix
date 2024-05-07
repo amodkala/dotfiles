@@ -15,7 +15,7 @@ in {
     enable = true;
 
     monitors = {
-        eDP-1 = desktops; # T480 built-in display
+        eDP-1 = desktops; # T480 and Inspiron 16 Plus built-in display
         LVDS-1 = desktops; # T430s built-in display
     };
 
