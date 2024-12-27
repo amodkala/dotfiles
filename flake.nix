@@ -2,10 +2,9 @@
     description = "NixOS configs";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         home-manager = {
-            url = "github:nix-community/home-manager/release-23.05";
+            url = "github:nix-community/home-manager/release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         darwin = {
@@ -14,36 +13,14 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, home-manager, darwin }:
-    let
-        system = "x84_64-linux";
-    in {
+    outputs = { self, nixpkgs, home-manager, darwin }: {
         nixosConfigurations = {
-            t430s = nixpkgs.lib.nixosSystem {
-                inherit system;
-                modules = [
-                    ./hosts/t430s
-                    nixos-hardware.nixosModules.lenovo-thinkpad-t430
-                    home-manager.nixosModules.home-manager
-                    { home-manager.users.amod = import ./users/amod/t430s; }
-                ];
-            };
-
-            t480 = nixpkgs.lib.nixosSystem {
-                inherit system;
-                modules = [
-                    ./hosts/t480
-                    home-manager.nixosModules.home-manager
-                    { home-manager.users.amod = import ./users/amod/t480; }
-                ];
-            };
-
-	    inspiron16plus = nixpkgs.lib.nixosSystem {
-	    	inherit system;
+	    cuda = nixpkgs.lib.nixosSystem {
+		system = "x84_64-linux";
 		modules = [
-		    ./hosts/inspiron16plus
+		    ./hosts/cuda
 		    home-manager.nixosModules.home-manager
-		    { home-manager.users.amod = import ./users/amod/inspiron16plus; }
+		    { home-manager.users.amod = import ./users/amod/cuda; }
 		];
 	    };
         };
