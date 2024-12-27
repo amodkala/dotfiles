@@ -3,7 +3,7 @@
     home = {
         username = "amod";
         homeDirectory = "/home/amod";
-        stateVersion = "23.05";
+        stateVersion = "24.11";
     };
 
     programs = with pkgs; {

@@ -1,10 +1,4 @@
 { pkgs, lib, ... }:
-let
-    tex = (pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-medium
-        tcolorbox enumitem environ fontawesome;
-    });
-in
 {
     imports = [
         ./plugins.nix
@@ -13,7 +7,6 @@ in
     home.packages = with pkgs; [
         rust-analyzer
         gopls
-        tex
     ];
 
     xdg = {
