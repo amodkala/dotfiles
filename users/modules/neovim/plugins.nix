@@ -4,8 +4,8 @@
         # editor tools
         plenary-nvim
         telescope-nvim	
-        vimtex
-        luasnip
+        # vimtex
+        # luasnip
 
         # themes
         catppuccin-nvim
