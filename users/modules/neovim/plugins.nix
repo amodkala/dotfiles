@@ -7,11 +7,16 @@
         # vimtex
         # luasnip
 
-        # themes
-        catppuccin-nvim
-
         # language tools
-        nvim-treesitter.withAllGrammars
+        (nvim-treesitter.withPlugins (p: with p; [ 
+          haskell
+          rust
+          nix
+          bash
+          markdown
+          yaml
+          json
+        ]))
         nvim-lspconfig
     ];
 }
