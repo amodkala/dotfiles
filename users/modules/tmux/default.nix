@@ -7,5 +7,8 @@
         extraConfig = ''
             set -ag terminal-overrides "$TERM:RGB"
         '';
+        aggressiveResize = true;
+        customPaneNavigationAndResize = true;
+        terminal = "screen-256color";
     };
 }

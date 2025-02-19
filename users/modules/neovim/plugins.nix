@@ -16,6 +16,7 @@
           markdown
           yaml
           json
+          terraform
         ]))
         nvim-lspconfig
     ];
