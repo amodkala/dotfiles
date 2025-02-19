@@ -60,7 +60,6 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.wireless = {
     enable = false;  # Enables wireless support via wpa_supplicant.
-    networks."VitalNet".psk = "VitalHQwifi!";
     interfaces = [ "enp0s1" ];
   };
   networking.firewall = {
