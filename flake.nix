@@ -11,22 +11,42 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, catppuccin, ... }@inputs: {
+  outputs = { 
+    self, 
+    nixpkgs, 
+    home-manager, 
+    nix-darwin, 
+    neovim-nightly-overlay, 
+    catppuccin, 
+    ... 
+  }: 
+  let
+    overlays = [
+      neovim-nightly-overlay.overlays.default
+    ];
+  in
+  {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
         ./hosts/vm
         home-manager.nixosModules.home-manager
         { 
-          home-manager.users.amod = {
-            imports = [
-              ./users/amod/vm
-              catppuccin.homeManagerModules.catppuccin
-            ];
-          };
+          nixpkgs.overlays = overlays;
+          home-manager.users.amod.imports = [
+            ./users/amod/vm
+            catppuccin.homeManagerModules.catppuccin
+          ];
         }
       ];
     };
@@ -36,10 +56,11 @@
         ./hosts/mbp 
         home-manager.darwinModules.home-manager
         { 
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.amodkala = {
-            imports = [
+          nixpkgs.overlays = overlays;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.amodkala.imports = [
               ./users/amod/mbp
               catppuccin.homeManagerModules.catppuccin
             ];
