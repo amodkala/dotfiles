@@ -3,8 +3,7 @@
     ../../amod
     ../../modules/catppuccin
     ../../modules/ghostty
-    ../../modules/neovim
+    ../../modules/neovim 
     ../../modules/tmux
   ];
-
 }

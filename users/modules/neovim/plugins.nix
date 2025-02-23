@@ -4,8 +4,6 @@
         # editor tools
         plenary-nvim
         telescope-nvim	
-        # vimtex
-        # luasnip
 
         # language tools
         (nvim-treesitter.withPlugins (p: with p; [ 
