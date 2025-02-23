@@ -1,12 +1,12 @@
 {pkgs, lib, ...}:
 {
-    programs.neovim.plugins = with pkgs.vimPlugins; [ 
-        # editor tools
-        plenary-nvim
-        telescope-nvim	
+  programs.neovim.plugins = [ 
+# editor tools
+    pkgs.vimPlugins.plenary-nvim
+    pkgs.vimPlugins.telescope-nvim	
 
-        # language tools
-        (nvim-treesitter.withPlugins (p: with p; [ 
+# language tools
+    (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p; [ 
           haskell
           rust
           nix
@@ -15,7 +15,7 @@
           yaml
           json
           terraform
-        ]))
-        nvim-lspconfig
-    ];
+    ]))
+    pkgs.vimPlugins.nvim-lspconfig
+  ];
 }

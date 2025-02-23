@@ -18,19 +18,19 @@
         vimAlias = true;
         viAlias = true;
 
-        extraPackages = with pkgs; [
-            ripgrep
-            gcc
+        extraPackages = [
+            pkgs.ripgrep
+            pkgs.gcc
 
-            rust-analyzer
-            cargo
-            rustc
+            pkgs.rust-analyzer
+            pkgs.cargo
+            pkgs.rustc
 
-            nixd
+            pkgs.nixd
 
-            ghc
-            haskell-language-server
-            cabal-install
+            pkgs.ghc
+            pkgs.haskell-language-server
+            pkgs.cabal-install
         ];
 
         extraConfig = ''

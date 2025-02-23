@@ -43,10 +43,14 @@
         home-manager.nixosModules.home-manager
         { 
           nixpkgs.overlays = overlays;
-          home-manager.users.amod.imports = [
-            ./users/amod/vm
-            catppuccin.homeManagerModules.catppuccin
-          ];
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.amod.imports = [
+              ./users/amod/vm
+              catppuccin.homeManagerModules.catppuccin
+            ];
+          };
         }
       ];
     };
