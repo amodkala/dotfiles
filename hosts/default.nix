@@ -1,8 +1,8 @@
-{ 
-  config, 
-    system,
-    pkgs, 
-    ... 
+{
+  config,
+  system,
+  pkgs,
+  ...
 }:
 {
   nix = {
