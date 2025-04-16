@@ -12,44 +12,85 @@
 
   nix = {
     buildMachines = [
-      # {
-      #   hostName = "hydra-aarch64.vital.company";
-      #   sshUser = "amod";
-      #   sshKey = "/home/amod/.ssh/id_rsa";
-      #   system = "aarch64-linux";
-      #   maxJobs = 4;
-      #   speedFactor = 2;
-      #   supportedFeatures = [
-      #     "nixos-test"
-      #     "benchmark"
-      #     "big-parallel"
-      #     "kvm"
-      #   ];
-      #   mandatoryFeatures = [ ];
-      # }
       {
-        hostName = "hydra-x86-64.vital.company";
-        sshUser = "amod";
-        sshKey = "/home/amod/.ssh/id_rsa";
+        hostName = "nixbuild.vital.company";
         system = "x86_64-linux";
-        maxJobs = 4;
+        maxJobs = 64;
         speedFactor = 2;
         supportedFeatures = [
-          "nixos-test"
           "benchmark"
           "big-parallel"
-          "kvm"
         ];
-        mandatoryFeatures = [ ];
+      }
+      {
+        hostName = "nixbuild.vital.company";
+        system = "aarch64-linux";
+        maxJobs = 64;
+        speedFactor = 2;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+        ];
       }
     ];
+    # buildMachines = [
+    #   {
+    #     hostName = "hydra-aarch64";
+    #     sshUser = "amod";
+    #     sshKey = "/home/amod/.ssh/id_rsa";
+    #     system = "aarch64-linux";
+    #     maxJobs = 4;
+    #     speedFactor = 2;
+    #     supportedFeatures = [
+    #       "nixos-test"
+    #       "benchmark"
+    #       "big-parallel"
+    #       "kvm"
+    #     ];
+    #     mandatoryFeatures = [ ];
+    #   }
+    #   {
+    #     hostName = "hydra-x8664";
+    #     sshUser = "amod";
+    #     sshKey = "/home/amod/.ssh/id_rsa";
+    #     system = "x86_64-linux";
+    #     maxJobs = 4;
+    #     speedFactor = 2;
+    #     supportedFeatures = [
+    #       "nixos-test"
+    #       "benchmark"
+    #       "big-parallel"
+    #       "kvm"
+    #     ];
+    #     mandatoryFeatures = [ ];
+    #   }
+    # ];
     distributedBuilds = true;
     extraOptions = ''
-      builders-use-substitutes = true
+      builders-use-substitutes = false
+      build-cores = 0
       keep-outputs = true
-      keep-derivations = true
+      keep-derivations = false
     '';
     settings.trusted-users = [ "amod" ];
+  };
+
+  programs.ssh = {
+    extraConfig = ''
+      Host nixbuild.vital.company
+        Port 2222
+        PubkeyAcceptedKeyTypes ssh-ed25519
+        ServerAliveInterval 60
+        IPQoS throughput
+        IdentityFile /home/amod/.ssh/id_nixbuild
+    '';
+
+    knownHosts = {
+      nixbuild = {
+        hostNames = [ "nixbuild.vital.company" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcay6dCUIbkUgqR7cYDrEDFP6fflkuK4m4nEWrdmWWq";
+      };
+    };
   };
 
   # Bootloader.
