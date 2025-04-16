@@ -88,7 +88,7 @@
     knownHosts = {
       nixbuild = {
         hostNames = [ "nixbuild.vital.company" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcay6dCUIbkUgqR7cYDrEDFP6fflkuK4m4nEWrdmWWq";
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ+jBIzENqxs/p7dFEAIjG8e5TT+A9Gvhi1cKNdIJ9vW";
       };
     };
   };
