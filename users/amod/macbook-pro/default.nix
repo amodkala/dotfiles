@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
     home = {
-        stateVersion = "22.11";
+        stateVersion = "23.05";
         packages = with pkgs; [
             rustc
             cargo

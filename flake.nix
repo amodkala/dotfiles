@@ -14,28 +14,17 @@
     };
 
     outputs = { self, nixpkgs, home-manager, darwin }: {
-        nixosConfigurations = {
-	    cuda = nixpkgs.lib.nixosSystem {
-		system = "x84_64-linux";
-		modules = [
-		    ./hosts/cuda
-		    home-manager.nixosModules.home-manager
-		    { home-manager.users.amod = import ./users/amod/cuda; }
-		];
-	    };
-        };
-
         darwinConfigurations = {
             "Amods-MBP" = darwin.lib.darwinSystem {
                 system = "x86_64-darwin";
                 modules = [
                     ./hosts/macbook-pro
-                    home-manager.darwinModules.home-manager
-                    { 
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.amodkala = import ./users/amod/macbook-pro;
-                    }
+                        home-manager.darwinModules.home-manager
+                        { 
+                            home-manager.useGlobalPkgs = true;
+                            home-manager.useUserPackages = true;
+                            home-manager.users.amodkala = import ./users/amod/macbook-pro;
+                        }
                 ];
             };
         };
