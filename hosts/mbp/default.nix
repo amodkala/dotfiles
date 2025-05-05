@@ -1,28 +1,22 @@
-{ config, pkgs, ... }:
-
+{ 
+  config, 
+  system,
+  pkgs, 
+  ... 
+}:
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ 
-      neovim
+
+  imports = [
+    ../../hosts
   ];
 
-  nix = {
-      package = pkgs.nixFlakes;
-      extraOptions = ''
-          experimental-features = nix-command flakes
-          '';
-  };
+  ids.gids.nixbld = 350;
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
   # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
 
   users.users.amodkala.home = "/Users/amodkala";
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina

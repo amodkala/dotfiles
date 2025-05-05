@@ -1,20 +1,16 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, ... }:
 {
-    home = {
-        username = "amod";
-        homeDirectory = "/home/amod";
-        stateVersion = "24.11";
+  programs = {
+    home-manager.enable = true;
+
+    git = {
+      enable = true;
+      userName = "amod-vb";
+      userEmail = "amod.kala@vitalbio.com";
     };
 
-    programs = with pkgs; {
-        home-manager.enable = true;
+    neovim.package = pkgs.neovim;
+  };
 
-        firefox.enable = true;
-
-        git = {
-            enable = true;
-            userName = "amodkala";
-            userEmail = "amodkala@gmail.com";
-        };
-    };
+  home.stateVersion = "25.05";
 }

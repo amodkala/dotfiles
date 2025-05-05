@@ -1,36 +1,24 @@
-{pkgs, lib, ...}:
-let
-    nvim-r = pkgs.vimUtils.buildVimPlugin {
-        name = "nvim-r";
-        src = pkgs.fetchFromGitHub {
-            owner = "jalvesaq";
-            repo = "Nvim-R";
-            rev = "v0.9.17";
-            sha256 = "0617whi2wl84p6bi12pj6dvkfdknkh3h2a6qxxx0s26j4kyzh6wy";
-        };
-        buildInputs = with pkgs; [
-            which
-            vim
-            zip
-        ];
-    };
-in {
-    programs.neovim.plugins = with pkgs.vimPlugins; [ 
-        # custom
-        nvim-r
+{ pkgs, lib, ... }:
+{
+  programs.neovim.plugins = [
+    # editor tools
+    pkgs.vimPlugins.plenary-nvim
+    pkgs.vimPlugins.telescope-nvim
+    pkgs.vimPlugins.lazygit-nvim
 
-        # editor tools
-        plenary-nvim
-        telescope-nvim	
-        vimtex
-        luasnip
-
-        # themes
-        catppuccin-nvim
-
-        # language tools
-        nvim-treesitter.withAllGrammars
-        nvim-lspconfig
-        rust-tools-nvim
-    ];
+    # language tools
+    pkgs.vimPlugins.nvim-lspconfig
+    (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+      p: with p; [
+        haskell
+        rust
+        nix
+        bash
+        markdown
+        yaml
+        json
+        terraform
+      ]
+    ))
+  ];
 }

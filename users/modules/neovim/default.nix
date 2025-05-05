@@ -1,34 +1,40 @@
 { pkgs, lib, ... }:
 {
-    imports = [
-        ./plugins.nix
-    ];
+  imports = [
+    ./plugins.nix
+  ];
 
-    home.packages = with pkgs; [
-        rust-analyzer
-        gopls
-    ];
-
-    xdg = {
-        configFile.nvim = {
-            source = ./config;
-            recursive = true;
-        };
+  xdg = {
+    configFile.nvim = {
+      source = ./config;
+      recursive = true;
     };
+  };
 
-    programs.neovim = {
-        enable = true;
-        defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
 
-        vimAlias = true;
-        viAlias = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
 
-        extraPackages = with pkgs; [
-            ripgrep
-        ];
+    extraPackages = [
+      pkgs.ripgrep
+      pkgs.gcc
 
-        extraConfig = ''
-            :luafile ~/.config/nvim/lua/init.lua
-        '';
-    };
+      pkgs.lazygit
+
+      pkgs.rust-analyzer
+      pkgs.cargo
+      pkgs.rustc
+
+      pkgs.nixd
+      pkgs.nixfmt-rfc-style
+
+      pkgs.ghc
+      pkgs.haskell-language-server
+      pkgs.cabal-install
+    ];
+  };
 }
