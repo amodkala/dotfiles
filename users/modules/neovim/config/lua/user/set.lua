@@ -11,7 +11,10 @@ vim.opt.fileencodings = "utf-8"
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.textwidth = 80
+vim.opt.wrapmargin = 0
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

@@ -36,9 +36,5 @@
       pkgs.haskell-language-server
       pkgs.cabal-install
     ];
-
-    extraConfig = ''
-      :luafile ~/.config/nvim/lua/init.lua
-    '';
   };
 }
