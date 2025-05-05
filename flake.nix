@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
@@ -50,7 +50,7 @@
                 useUserPackages = true;
                 users.amodkala.imports = [
                   ./users/amod/macbook-pro
-                  catppuccin.homeManagerModules.catppuccin
+                  catppuccin.homeModules.catppuccin
                 ];
               };
             }
