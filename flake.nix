@@ -36,9 +36,9 @@
         modules = [
           inputs.determinate.darwinModules.default
           inputs.home-manager.darwinModules.home-manager
-	  ./modules/darwin.nix
-	  ./modules/determinate.nix
-	  {
+          ./modules/darwin.nix
+          ./modules/determinate.nix
+          {
             nixpkgs.overlays = [
               inputs.neovim-nightly-overlay.overlays.default
             ];
@@ -46,14 +46,14 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.amod = {
-	        imports = [
+                imports = [
                   inputs.catppuccin.homeModules.catppuccin
-		  ./modules/home-manager.nix
+                  ./modules/home-manager.nix
                 ];
-	        home.stateVersion = "25.11";
+                home.stateVersion = "25.11";
               };
-	    };
-	  }
+            };
+          }
         ];
       };
     };

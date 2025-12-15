@@ -13,7 +13,7 @@
     git = {
       enable = true;
       settings.user = {
-	name = "amodkala";
+        name = "amodkala";
         email = "amodkala@gmail.com";
       };
     };
