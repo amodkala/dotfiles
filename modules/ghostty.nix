@@ -8,6 +8,7 @@
       cursor-style-blink = false;
       window-colorspace = "display-p3";
       maximize = true;
+      shell-integration-features = "title, ssh-env";
     };
   };
 }

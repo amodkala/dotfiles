@@ -11,10 +11,12 @@
     users.amod = {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
+        ./neovim
+        ./claude
         ./tmux.nix
         ./catppuccin.nix
-        ./neovim
         ./ghostty.nix
+        ./zsh.nix
       ];
       programs = {
         home-manager.enable = true;

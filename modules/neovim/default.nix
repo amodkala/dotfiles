@@ -32,6 +32,8 @@
           yaml
           json
           terraform
+          typescript
+          tsx
         ]
       ))
     ];
