@@ -39,7 +39,9 @@ vim.cmd.colorscheme "catppuccin"
 vim.lsp.enable({
   'rust-analyzer',
   'nixd',
-  'luals'
+  'luals',
+  'ruff',
+  'ty'
 })
 
 vim.diagnostic.config({

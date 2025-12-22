@@ -28,12 +28,11 @@
           nix
           lua
           bash
+          python
           markdown
           yaml
           json
           terraform
-          typescript
-          tsx
         ]
       ))
     ];
@@ -41,14 +40,21 @@
     extraPackages = [
       pkgs.ripgrep
 
+      # lua
       pkgs.lua-language-server
 
+      # rust
       pkgs.rust-analyzer
       pkgs.clippy
       pkgs.rustfmt
 
+      # nix
       pkgs.nixd
       pkgs.nixfmt-rfc-style
+
+      # python
+      pkgs.ruff
+      pkgs.ty
     ];
   };
 }

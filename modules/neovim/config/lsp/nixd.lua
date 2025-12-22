@@ -7,9 +7,9 @@ return {
     "flake.lock",
   },
   settings = {
-    ["nixd"] = {
-      checkOnSave = {
-        command = "nixfmt",
+    nixd = {
+      formatting = {
+        command = { "nixfmt" },
       },
     },
   },
