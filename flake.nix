@@ -31,76 +31,23 @@
     { self, ... }@inputs:
     let
       darwinModules = [
+        ./modules/darwin.nix
         {
-          nixpkgs = {
-            overlays = [
-              inputs.neovim-nightly-overlay.overlays.default
-            ];
-            config.allowUnfree = true;
-          };
-          # Required for nix-darwin to work
-          system.stateVersion = 1;
-
-          users.users.amod = {
-            name = "amod";
-            home = "/Users/amod";
-          };
-
-          programs.zsh.enable = true;
+          nixpkgs.overlays = [
+            inputs.neovim-nightly-overlay.overlays.default
+          ];
         }
-      ]
-      ++ determinateDarwinModules
-      ++ homeManagerDarwinModules;
+      ];
 
       determinateDarwinModules = [
-        {
-          # Let Determinate Nix handle your Nix configuration
-          nix.enable = false;
-
-          # Custom Determinate Nix settings written to /etc/nix/nix.custom.conf
-          determinate-nix.customSettings = {
-            # Enables parallel evaluation (remove this setting or set the value to 1 to disable)
-            eval-cores = 0;
-            extra-experimental-features = [
-              "build-time-fetch-tree" # Enables build-time flake inputs
-              "parallel-eval" # Enables parallel evaluation
-            ];
-          };
-        }
+        ./modules/determinate.nix
         inputs.determinate.darwinModules.default
       ];
 
       homeManagerDarwinModules = [
+        ./modules/home-manager.nix
         {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.amod = {
-              imports = [
-                inputs.catppuccin.homeModules.catppuccin
-                ./modules/neovim
-                ./modules/claude
-                ./modules/tmux.nix
-                ./modules/catppuccin.nix
-                ./modules/opencode.nix
-                ./modules/ghostty.nix
-                ./modules/zsh.nix
-              ];
-              programs = {
-                home-manager.enable = true;
-
-                git = {
-                  enable = true;
-                  settings.user = {
-                    name = "amodkala";
-                    email = "amodkala@gmail.com";
-                  };
-                };
-              };
-              home.stateVersion = "25.11";
-            };
-          };
-
+          home-manager.users.amod.imports = [ inputs.catppuccin.homeModules.catppuccin ];
         }
         inputs.home-manager.darwinModules.home-manager
       ];
@@ -109,10 +56,7 @@
       # nix-darwin configuration output
       darwinConfigurations.mac = inputs.nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = darwinModules;
+        modules = darwinModules ++ determinateDarwinModules ++ homeManagerDarwinModules;
       };
     };
 }
