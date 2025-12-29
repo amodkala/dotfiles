@@ -5,9 +5,10 @@
     users.amod = {
       imports = [
         ./neovim
+        ./opencode
+
         ./tmux.nix
         ./catppuccin.nix
-        ./opencode.nix
         ./ghostty.nix
         ./zsh.nix
       ];
