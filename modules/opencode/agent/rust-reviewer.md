@@ -7,11 +7,12 @@ tools:
   write: true
   edit: false
   webfetch: true
+  bash: true
+permission:
   bash:
     "git *": allow
     "date *": allow
     "*": deny
-permission:
   skill:
     "idiomatic-rust": allow
 ---

@@ -4,12 +4,13 @@
     useUserPackages = true;
     users.amod = {
       imports = [
+        ./claude
         ./neovim
         ./opencode
 
-        ./tmux.nix
         ./catppuccin.nix
         ./ghostty.nix
+        ./tmux.nix
         ./zsh.nix
       ];
       programs = {
