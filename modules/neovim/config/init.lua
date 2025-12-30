@@ -37,11 +37,14 @@ vim.cmd.colorscheme "catppuccin"
 
 -- native lsp
 vim.lsp.enable({
-  'rust-analyzer',
-  'nixd',
+  'gopls',
+  'hls',
   'luals',
+  'nixd',
   'ruff',
-  'ty'
+  'rust-analyzer',
+  'ty',
+  'wgsl-analyzer',
 })
 
 vim.diagnostic.config({

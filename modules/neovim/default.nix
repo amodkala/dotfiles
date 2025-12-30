@@ -24,37 +24,33 @@
       # language tools
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (
         p: with p; [
-          rust
-          nix
-          lua
           bash
+          go
+          haskell
+          lua
+          nix
           python
-          markdown
-          yaml
+          rust
+          wgsl
+
           json
+          markdown
           terraform
+          yaml
         ]
       ))
     ];
 
     extraPackages = [
+      # telescope
       pkgs.ripgrep
 
       # lua
       pkgs.lua-language-server
 
-      # rust
-      pkgs.rust-analyzer
-      pkgs.clippy
-      pkgs.rustfmt
-
       # nix
       pkgs.nixd
       pkgs.nixfmt-rfc-style
-
-      # python
-      pkgs.ruff
-      pkgs.ty
     ];
   };
 }
