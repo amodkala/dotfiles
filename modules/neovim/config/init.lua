@@ -43,6 +43,7 @@ vim.lsp.enable({
   'nixd',
   'ruff',
   'rust-analyzer',
+  'tinymist',
   'ty',
   'wgsl-analyzer',
 })

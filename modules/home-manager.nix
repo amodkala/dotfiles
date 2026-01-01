@@ -10,20 +10,11 @@
 
         ./catppuccin.nix
         ./ghostty.nix
-        ./tmux.nix
+        ./vcs.nix
         ./zsh.nix
       ];
-      programs = {
-        home-manager.enable = true;
 
-        git = {
-          enable = true;
-          settings.user = {
-            name = "amodkala";
-            email = "amodkala@gmail.com";
-          };
-        };
-      };
+      programs.home-manager.enable = true;
       home.stateVersion = "25.11";
     };
   };

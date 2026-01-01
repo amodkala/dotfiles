@@ -31,6 +31,7 @@
           nix
           python
           rust
+          typst
           wgsl
 
           json
