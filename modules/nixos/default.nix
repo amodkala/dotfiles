@@ -18,6 +18,7 @@
   networking.networkmanager.enable = true;
   networking.wireless.enable = lib.mkForce false;
   networking.firewall = {
+    allowedTCPPorts = [ 5173 8080 ]; # Vite dev server, magi API
     allowedUDPPorts = [ 51820 ]; # WireGuard
   };
 
