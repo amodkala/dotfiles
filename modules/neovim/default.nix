@@ -16,6 +16,9 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    withRuby = false;
+    withPython3 = false;
+
     plugins = [
       # editor tools
       pkgs.vimPlugins.plenary-nvim
@@ -48,7 +51,7 @@
 
       # nix
       pkgs.nixd
-      pkgs.nixfmt-rfc-style
+      pkgs.nixfmt
     ];
   };
 }

@@ -13,6 +13,12 @@ in
         ServerAliveInterval 60
         IPQoS throughput
         IdentityFile ${sshKeyPath}
+        # The nixbuild endpoint runs hssh (nixbuild.net's Haskell SSH server),
+        # not OpenSSH. On large transfers (e.g. `nix log`, big copy-back) a
+        # client-initiated rekey collides with hssh still streaming CHANNEL_DATA,
+        # and OpenSSH 10.x strict-KEX aborts: "non-transport message 94 received
+        # from peer during key exchange" / Protocol error. Disable rekeying.
+        RekeyLimit 128G none
     '';
 
     knownHosts = {
