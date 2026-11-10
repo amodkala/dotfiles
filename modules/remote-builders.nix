@@ -1,8 +1,7 @@
 { lib, pkgs, ... }:
 let
-  sshKeyPath = if pkgs.stdenv.isDarwin
-    then "/Users/amodkala/.ssh/id_nixbuild"
-    else "/home/amod/.ssh/id_nixbuild";
+  sshKeyPath =
+    if pkgs.stdenv.isDarwin then "/Users/amodkala/.ssh/id_nixbuild" else "/home/amod/.ssh/id_nixbuild";
 in
 {
   programs.ssh = {
@@ -58,7 +57,10 @@ in
     '';
     settings = {
       max-jobs = lib.mkDefault "auto";
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
   };
 }

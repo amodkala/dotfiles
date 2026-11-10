@@ -6,7 +6,6 @@
       imports = [
         ./claude
         ./neovim
-        ./opencode
 
         ./catppuccin.nix
         ./ripgrep.nix

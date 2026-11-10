@@ -11,6 +11,7 @@
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
@@ -38,6 +39,19 @@
 
   # Packages
   nixpkgs.config.allowUnfree = true;
+
+  # Disk space
+  nix.settings = {
+    auto-optimise-store = true;
+    min-free = 10 * 1024 * 1024 * 1024; # GC during builds when <10G free...
+    max-free = 30 * 1024 * 1024 * 1024; # ...until 30G free
+  };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  services.journald.settings.Journal.SystemMaxUse = "500M";
 
   # Services
   services.openssh.enable = true;
