@@ -24,6 +24,7 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vital-nix.url = "git+ssh://git@github.com/VitalBio/vital-nix?ref=amod/developer-module";
   };
 
   # Flake outputs
@@ -55,7 +56,6 @@
 
       # NixOS modules
       nixosModules = [
-        ./modules/nixos
         {
           nixpkgs.overlays = [
             inputs.neovim-nightly-overlay.overlays.default
@@ -63,8 +63,14 @@
         }
       ];
 
-      determinateNixosModules = [
-        inputs.determinate.nixosModules.default
+      vitalNixosModules = [
+        inputs.vital-nix.nixosModules.developer
+        {
+          vital.developer = {
+            enable = true;
+            nixbuild.sshKey = "/home/amod/.ssh/id_nixbuild";
+          };
+        }
       ];
 
       homeManagerNixosModules = [
@@ -81,11 +87,25 @@
       ];
     in
     {
-      # NixOS VM configuration
-      nixosConfigurations.vm = inputs.nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules =
-          nixosModules ++ determinateNixosModules ++ homeManagerNixosModules ++ remoteBuilderModules;
+      # NixOS VM configurations
+      nixosConfigurations = {
+        vm = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [ ./modules/nixos ] ++ nixosModules ++ homeManagerNixosModules ++ vitalNixosModules;
+        };
+      }
+      // inputs.nixpkgs.lib.optionalAttrs (builtins.pathExists ./hosts/orb/configuration.nix) {
+        orb = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./hosts/orb/configuration.nix
+            inputs.vital-nix.nixosModules.orbstack
+            ./modules/nixos/common.nix
+          ]
+          ++ nixosModules
+          ++ homeManagerNixosModules
+          ++ vitalNixosModules;
+        };
       };
 
       # nix-darwin configuration
