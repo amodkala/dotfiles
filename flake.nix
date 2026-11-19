@@ -1,15 +1,11 @@
 {
-  description = "A flake template for nix-darwin and Determinate Nix";
+  description = "nix-darwin and NixOS configurations";
 
   # Flake inputs
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -41,9 +37,14 @@
         }
       ];
 
-      determinateDarwinModules = [
-        ./modules/determinate.nix
-        inputs.determinate.darwinModules.default
+      vitalDarwinModules = [
+        inputs.vital-nix.darwinModules.developer
+        {
+          vital.developer = {
+            enable = true;
+            nixbuild.sshKey = "/Users/amodkala/.ssh/id_nixbuild";
+          };
+        }
       ];
 
       homeManagerDarwinModules = [
@@ -80,11 +81,6 @@
         }
         inputs.home-manager.nixosModules.home-manager
       ];
-
-      # Shared modules
-      remoteBuilderModules = [
-        ./modules/remote-builders.nix
-      ];
     in
     {
       # NixOS VM configurations
@@ -112,7 +108,7 @@
       darwinConfigurations.mac = inputs.nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules =
-          darwinModules ++ determinateDarwinModules ++ homeManagerDarwinModules ++ remoteBuilderModules;
+          darwinModules ++ homeManagerDarwinModules ++ vitalDarwinModules;
       };
     };
 }
