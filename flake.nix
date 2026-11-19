@@ -57,6 +57,7 @@
 
       # NixOS modules
       nixosModules = [
+        ./modules/nixos
         {
           nixpkgs.overlays = [
             inputs.neovim-nightly-overlay.overlays.default
@@ -75,7 +76,7 @@
       ];
 
       homeManagerNixosModules = [
-        ./modules/home-manager-vm.nix
+        ./modules/home-manager-nixos.nix
         {
           home-manager.users.amod.imports = [ inputs.catppuccin.homeModules.catppuccin ];
         }
@@ -83,32 +84,22 @@
       ];
     in
     {
-      # NixOS VM configurations
-      nixosConfigurations = {
-        vm = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [ ./modules/nixos ] ++ nixosModules ++ homeManagerNixosModules ++ vitalNixosModules;
-        };
-      }
-      // inputs.nixpkgs.lib.optionalAttrs (builtins.pathExists ./hosts/orb/configuration.nix) {
-        orb = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            ./hosts/orb/configuration.nix
-            inputs.vital-nix.nixosModules.orbstack
-            ./modules/nixos/common.nix
-          ]
-          ++ nixosModules
-          ++ homeManagerNixosModules
-          ++ vitalNixosModules;
-        };
+      # OrbStack machine
+      nixosConfigurations.orb = inputs.nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/orb/configuration.nix
+          inputs.vital-nix.nixosModules.orbstack
+        ]
+        ++ nixosModules
+        ++ homeManagerNixosModules
+        ++ vitalNixosModules;
       };
 
       # nix-darwin configuration
       darwinConfigurations.mac = inputs.nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        modules =
-          darwinModules ++ homeManagerDarwinModules ++ vitalDarwinModules;
+        modules = darwinModules ++ homeManagerDarwinModules ++ vitalDarwinModules;
       };
     };
 }
