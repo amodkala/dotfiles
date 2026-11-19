@@ -1,9 +1,5 @@
 { lib, pkgs, ... }:
 let
-  homeDir = if pkgs.stdenv.isDarwin then "/Users/amodkala" else "/home/amod/";
-  personalKeyPath = homeDir ++ ".ssh/id_ed25519_amodkala";
-  workKeyPath = homeDir ++ ".ssh/id_rsa";
-
   vcs = lib.genAttrs [ "git" "jujutsu" ] (_: {
     enable = true;
     settings.user = {
@@ -13,20 +9,18 @@ let
   });
 in
 {
-
   programs = vcs // {
-    ssh.matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = personalKeyPath;
-        extraOptions.IdentitiesOnly = "yes";
-      };
-      "github.com-work" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = workKeyPath;
-        extraOptions.IdentitiesOnly = "yes";
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      includes = lib.optional pkgs.stdenv.hostPlatform.isDarwin "~/.orbstack/ssh/config";
+      settings = {
+        "github.com" = {
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "~/.ssh/id_ed25519_amodkala";
+          IdentitiesOnly = true;
+        };
       };
     };
   };
