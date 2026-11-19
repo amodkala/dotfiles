@@ -18,6 +18,7 @@
 
   # Packages
   nixpkgs.config.allowUnfree = true;
+  environment.systemPackages = [ pkgs.ghostty.terminfo ];
 
   nix.package = pkgs.nixVersions.latest;
 

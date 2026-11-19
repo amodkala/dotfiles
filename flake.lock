@@ -192,11 +192,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795047491,
-        "narHash": "sha256-XoQjwxmT4L6BvvLcwxic8dUtq4LGo3Z4w70FP55s3I8=",
+        "lastModified": 1795064178,
+        "narHash": "sha256-FF0jhe+iwxksiOyXAAHCa7LguRTDXX3CkpY9PwfZ2Z8=",
         "ref": "amod/developer-module",
-        "rev": "de2bf748282f46db14260ed836b1fbbe747d1816",
-        "revCount": 81,
+        "rev": "469b39ecba194ee0b9a9108552aa34857accff6d",
+        "revCount": 82,
         "type": "git",
         "url": "ssh://git@github.com/VitalBio/vital-nix"
       },
